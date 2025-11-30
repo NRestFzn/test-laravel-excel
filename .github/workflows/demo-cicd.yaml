@@ -1,0 +1,25 @@
+name: Demo CI/CD Lokal
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  demo-deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: 1. Mengambil Kode Terbaru
+        uses: actions/checkout@v3
+
+      - name: 2. Simulasi Install Dependency
+        run: echo "Sedang menginstall library yang dibutuhkan..."
+
+      - name: 3. Membuat File Bukti
+        run: |
+          echo "Halo Mahasiswa! File ini dibuat otomatis oleh GitHub Actions" > bukti-otomatis.txt
+          echo "Dibuat pada tanggal %DATE% jam %TIME%" >> bukti-otomatis.txt
+        shell: cmd
+
+      - name: 4. Selesai
+        run: echo "Deployment Berhasil! Silakan cek folder hasil."

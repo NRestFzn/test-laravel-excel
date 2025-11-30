@@ -10,16 +10,16 @@ class BookExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Book::all();
+        $bukus = Book::all();
+
+        return $bukus;
     }
 
     public function headings(): array
     {
         return [
-            'ID Buku',
-            'Judul',
-            'Penulis',
-            'Kategori',
+            'id',
+            'warna cover',
         ];
     }
 }
