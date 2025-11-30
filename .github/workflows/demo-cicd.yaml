@@ -1,25 +1,35 @@
-name: Demo CI/CD Lokal
+name: Demo CI/CD
 
+# Sebagai kondisi, WorkFlow akan dijalankan ketika apa?
+# Pada kasus disini, setiap kita melakukan push
+# ke branch main. Maka WorkFlow akan dijalankan
 on:
   push:
     branches: ["main"]
 
+# Untuk mengelompokan tugas-tugasnya ngapain aja
 jobs:
+  # Nama Jobs nya
   demo-deploy:
+    # Kita kasih self-hosted karena run dilokal
     runs-on: self-hosted
 
+    # Langkah-langkah Jobs nya mau ngapain aja
     steps:
-      - name: 1. Mengambil Kode Terbaru
+      # Kasih nomor, biar gak bingung
+      - name: 1. Ambil perubahan kode
+        # Fungsinya buat download code paling baru
         uses: actions/checkout@v3
 
       - name: 2. Simulasi Install Dependency
         run: echo "Sedang menginstall library yang dibutuhkan..."
 
-      - name: 3. Membuat File Bukti
+        # Buat bikin file
+      - name: 3. Membuat file log
         run: |
-          echo "Halo Mahasiswa! File ini dibuat otomatis oleh GitHub Actions" > bukti-otomatis.txt
-          echo "Dibuat pada tanggal %DATE% jam %TIME%" >> bukti-otomatis.txt
+          echo "Halo! Aku Liz dari Lumiere." > surat_dari_liz.txt
+          echo "Aku bikin file ini otomatis, Dibikinnya pas tanggal %DATE% jam %TIME%" >> surat_dari_liz.txt
         shell: cmd
 
       - name: 4. Selesai
-        run: echo "Deployment Berhasil! Silakan cek folder hasil."
+        run: echo "Deployment Berhasil!"
